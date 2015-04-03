@@ -17,7 +17,8 @@ router.post('/', function(req,res) {
     var outputURL = hashids.encode(data.id);
     data.urlShort = outputURL;
     data.save().then(function() {
-      res.render('url/index', {taco: data.urlShort});
+      var newURL = {taco: req.headers.host + '/' + data.urlShort};
+      res.render('url/index', newURL);
     });
   });
 });
